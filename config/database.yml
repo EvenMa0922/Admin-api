@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+
+development:
+  <<: *default
+  host: <%= ENV['POSTGRESQL_HOST'] %>
+  database: <%= ENV['POSTGRESQL_DB'] %>
+  port: <%= ENV['POSTGRESQL_PORT'] %>
+  user: <%= ENV['POSTGRESQL_USER'] %>
+  password: <%= ENV['POSTGRESQL_PASS'] %>
+
+test:
+  <<: *default
+  host: <%= ENV['POSTGRESQL_HOST'] %>
+  database: <%= ENV['POSTGRESQL_DB'] %>
+  port: <%= ENV['POSTGRESQL_PORT'] %>
+  user: <%= ENV['POSTGRESQL_USER'] %>
+  password: <%= ENV['POSTGRESQL_PASS'] %>
+
+production:
+  <<: *default
+  pool: <%= ENV['RAILS_MAX_THREADS'] %>
+  url: <%= ENV['DATABASE_URL'] %>
